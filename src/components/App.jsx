@@ -30,7 +30,7 @@ export class App extends React.Component {
     this.setState({ isLoading: true });
     try {
       const data = await getSearcth(query);
-      if (data.hits.length === 0) return alert('Нічого не знайдено');
+      if (data.hits.length === 0) return alert('Нічого не знайдено(');
 
       this.setState(prev => ({
         gallery: [...prev.gallery, ...data.hits],
