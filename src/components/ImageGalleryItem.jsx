@@ -1,8 +1,13 @@
-export const ImageGalleryItem = ({ items }) => {
-  const item = items.map(el => (
-    <li className="gallery-item" id={el.id}>
-      <img src={el.webformatURL} alt={el.tags} />
+export const ImageGalleryItem = ({ src, alt, onClick, modal }) => {
+  return (
+    <li className="ImageGalleryItem">
+      <img
+        className="ImageGalleryItem-image"
+        src={src}
+        alt={alt}
+        onClick={onClick}
+        href={modal}
+      />
     </li>
-  ));
-  return <>{item}</>;
+  );
 };
