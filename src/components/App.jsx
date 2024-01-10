@@ -2,6 +2,7 @@ import { getSearcth } from 'fetch';
 import { Searchbar } from './Searchbar';
 import React from 'react';
 import { ImageGallery } from './ImageGallery';
+
 export class App extends React.Component {
   state = {
     query: '',
