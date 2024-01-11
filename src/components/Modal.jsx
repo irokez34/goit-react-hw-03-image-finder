@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 
- const modalRoot = document.querySelector('#modal__root');
+ const modalRoot = document.querySelector('#root');
 
 export default class Modal extends Component {
   componentDidMount() {
@@ -26,8 +26,8 @@ export default class Modal extends Component {
 
   render() {
     return createPortal(
-      <div className="Modal" onClick={this.handleDropClick}>
-        <div className="modal-box">
+      <div className="Overlay" onClick={this.handleDropClick}>
+        <div className="Modalx">
           <img src={this.props.src} alt={this.props.alt} />
         </div>
       </div>,

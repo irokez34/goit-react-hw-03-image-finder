@@ -6,6 +6,7 @@ import { ImageGallery } from './ImageGallery';
 import { Loader } from './Loader';
 import { Button } from './Button';
 import Modal from './Modal';
+
 export class App extends React.Component {
   state = {
     query: '',
@@ -21,7 +22,7 @@ export class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const { query, page } = this.state;
     if (prevState.query !== query || prevState.page !== page) {
-      this.getPhotos(query);
+      this.getPhotos(query, page);
     }
   }
 
@@ -29,7 +30,7 @@ export class App extends React.Component {
     if (!query) return;
     this.setState({ isLoading: true });
     try {
-      const data = await getSearcth(query);
+      const data = await getSearcth(query, page);
       if (data.hits.length === 0) return alert('Нічого не знайдено(');
 
       this.setState(prev => ({
@@ -55,7 +56,7 @@ export class App extends React.Component {
   };
   ToggleModal = e => {
     const control = e === undefined;
-
+    console.log('work');
     this.setState(({ showModal }) => ({
       showModal: !showModal,
     }));
@@ -82,10 +83,11 @@ export class App extends React.Component {
     return (
       <div className="App">
         <Searchbar onSubmit={this.onHandleSubmit} />
+
+        <ImageGallery images={gallery} onClick={this.ToggleModal} />
         {showModal && (
           <Modal onClose={this.ToggleModal} src={modalSrc} alt={modalAlt} />
         )}
-        <ImageGallery images={gallery} onClick={this.ToggleModal} />
         {isLoading && <Loader isLoading={this.state.isLoading} />}
         {visibleLoadMore && <Button onClick={this.onHandleLoadMore} />}
       </div>
